@@ -1,5 +1,4 @@
 require("dotenv").config();
-const https = require("https")
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -45,10 +44,6 @@ app.get('/', (req, res, next) => {
 
 app.use("/openAi", openAiRouter)
 
-const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-}
-
-
-https.createServer(options, app).listen(PORT, console.log(`server runs on port ${PORT}`))
+app.listen(PORT, () => {
+    console.log('server started on port ' + PORT);
+})
